@@ -1,6 +1,6 @@
 'use strict';
 
-const  { Booking } = require ('../model')
+const  { Booking } = require ('../models')
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
