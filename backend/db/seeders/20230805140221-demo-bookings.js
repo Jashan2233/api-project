@@ -17,7 +17,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await Booking.bulkCreate('Bookings', [
+    await Booking.bulkCreate([
       {
         spotId: 1,
         userId: 3,
