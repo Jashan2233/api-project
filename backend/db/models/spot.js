@@ -18,6 +18,12 @@ module.exports = (sequelize, DataTypes) => {
           hooks: true
         }
       )
+      spot.belongsTo(
+        models.User, {
+          foreignKey: 'ownerId',
+          as: 'Owner'
+      }
+      );
     }
   }
   spot.init({
