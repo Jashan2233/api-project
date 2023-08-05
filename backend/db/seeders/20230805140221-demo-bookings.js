@@ -1,4 +1,7 @@
 'use strict';
+
+const  { Booking } = require ('../model')
+
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
@@ -14,7 +17,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Bookings', [
+    await Booking.bulkCreate('Bookings', [
       {
         spotId: 1,
         userId: 3,
