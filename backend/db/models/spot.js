@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class spot extends Model {
+  class Spot extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,22 +11,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      spot.hasMany(
-        models.Booking, {
-          foreignKey: 'spotId',
-          onDelete: 'CASCADE',
-          hooks: true
-        }
-      )
-      spot.belongsTo(
+      Spot.belongsToMany(models.User, {
+        through: models.Booking,
+        foreignKey: 'spotId',
+        otherKey: 'userId',
+        // onDelete: 'CASCADE',
+        // hooks: true
+      }),
+      Spot.belongsTo(
         models.User, {
           foreignKey: 'ownerId',
           as: 'Owner'
-      }
-      );
+      }),
+      Spot.hasMany(models.Booking, {
+        foreignKey: 'spotId',
+        onDelete: 'CASCADE',
+        hooks: true
+      })
     }
   }
-  spot.init({
+  Spot.init({
     ownerId: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -70,8 +74,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'spot',
-    tableName: 'Spots'
+    modelName: 'Spot'
   });
-  return spot;
+  return Spot;
 };
