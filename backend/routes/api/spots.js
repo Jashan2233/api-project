@@ -1,6 +1,6 @@
 const express = require('express')
 const { check } = require('express-validator');
-const{requireAuth} = require('../../utils/auth')
+const{requireAuth, requireAuthor} = require('../../utils/auth')
 const { Op, QueryInterface } = require('sequelize')
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -266,6 +266,29 @@ router.post('/', requireAuth, validateCreateSpot, async (req, res, next) => {
     res.json(spot)
 })
 
+// Add an Image to a spoit with SpotId
+
+
+router.post('/:spotId/iamges', requireAuth, requireAuthor, async (req, res, next) => {
+    const spotId = req.params.spotId;
+    const {url, preview} = req.body;
+    const spot = await Spot.findByPk(spotId);
+    if(spot) {
+        const image = await SpotImage.create({
+            url,
+            preview,
+            spotId
+        })
+        const newImageId = image.id
+        const imageData = await SpotImage.scope('defaultScope').findByPk(newId);
+        res.json(imageData)
+    } else {
+        res.status(404).json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+})
 
 
 module.exports = router;
