@@ -247,7 +247,7 @@ const validateCreateSpot = [
         .withMessage('Price per day is required'),
     handleValidationErrors
 ];
-
+// Create Spot
 router.post('/', requireAuth, validateCreateSpot, async (req, res, next) => {
     const ownerId = req.user.id;
     const { address, city, state, country, lat, lng, name, description, price }= req.body
@@ -268,7 +268,6 @@ router.post('/', requireAuth, validateCreateSpot, async (req, res, next) => {
 
 // Add an Image to a spoit with SpotId
 
-
 router.post('/:spotId/images', requireAuth, requireAuthor, async (req, res, next) => {
     const spotId = req.params.spotId;
     const {url, preview} = req.body;
@@ -288,7 +287,55 @@ router.post('/:spotId/images', requireAuth, requireAuthor, async (req, res, next
             "statusCode": 404
         })
     }
+});
+
+router.put('/:spotId', requireAuth, requireAuthor, validateCreateSpot, async(req, res, next) => {
+    const spotId = req.params.spotId;
+    const spot = await Spot.findByPk(spotId);
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    if (address) {
+        spot.address = address;
+    }
+    if (city) {
+        spot.city = city;
+    }
+    if (state) {
+        spot.state = state;
+    }
+    if (country) {
+        spot.country = country;
+    }
+    if (lat) {
+        spot.lat = lat;
+    }
+    if (lng) {
+        spot.lng = lng;
+    }
+    if (name) {
+        spot.name = name;
+    }
+    if (description) {
+        spot.description = description;
+    }
+    if (price) {
+        spot.price = price
+    }
+    await spot.save();
+    res.json(spot);
+});
+
+
+//Delete a existing Spot
+
+router.delete('/:spotId', requireAuth, requireAuthor, async (req, res, next) => {
+    const spotId = req.params.spotId;
+    const spot = await Spot.findByPk(spotId);
+    await spot.destroy();
+    res.json({
+        "message": "Successfully deleted"
+    })
 })
+
 
 
 module.exports = router;

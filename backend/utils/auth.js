@@ -1,7 +1,7 @@
 // backend/utils/auth.js
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { User, Spot, Review, Booking, SpotImage, ReviewImage } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -76,10 +76,6 @@ const requireAuthor = async function (req, res, next) {
   const spotId = req.params.spotId;
   const spot = await Spot.findByPk(spotId);
   if (!spot) {
-      // const err = new Error('Couldnt find Spot');
-      // err.message = `Spot couldn't be found`;
-      // err.status = 404;
-      // return next(err);
       return res.status(404).json({
           "message": "Spot couldn't be found",
           "statusCode": 404
