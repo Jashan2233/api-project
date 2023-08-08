@@ -269,7 +269,7 @@ router.post('/', requireAuth, validateCreateSpot, async (req, res, next) => {
 // Add an Image to a spoit with SpotId
 
 
-router.post('/:spotId/iamges', requireAuth, requireAuthor, async (req, res, next) => {
+router.post('/:spotId/images', requireAuth, requireAuthor, async (req, res, next) => {
     const spotId = req.params.spotId;
     const {url, preview} = req.body;
     const spot = await Spot.findByPk(spotId);
