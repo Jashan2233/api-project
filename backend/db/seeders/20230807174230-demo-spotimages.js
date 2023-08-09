@@ -12,7 +12,7 @@ module.exports = {
         preview: true,
       },
       {
-        spotId: 2,
+        spotId: 9,
         url: 'https://www.ancient-origins.net/sites/default/files/field/image/Mount-Olympus.jpg',
         preview: true,
       },

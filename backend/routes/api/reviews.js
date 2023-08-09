@@ -13,75 +13,68 @@ const router = express.Router();
 
 // Get all Reviews of Current User
 
+//Get all Reviews of Current User
+
 router.get('/current', requireAuth, async (req, res, next) => {
     const id = req.user.id;
-
-    const user = await User.findOne({
-        where: {
-            id
-        },
-        attributes: {
-            exclude: ['username', 'hashedPassword', 'createdAt', 'updatedAt', 'email']
-        }
-    });
-
     const reviews = await Review.findAll({
         where: {
             userId: id
-        }
+        },
+        raw: true
     });
+    for (let review of reviews) {
+        const user = await User.findOne({
+            where: {
+                id
+            },
+            attributes: {
+                        exclude: ['username', 'hashedPassword', 'createdAt', 'updatedAt', 'email']
+                    }
 
-    const enhancedReviews = await Promise.all(reviews.map(async review => {
-        const enhancedReview = review.get({ plain: true }); // Convert Sequelize instance to plain object
-        enhancedReview.User = user;
-
-        const spots = await Spot.findAll({
+        });
+        review.User = user;
+        const spots = await Spot.findOne({
             where: {
                 ownerId: id
-            }
+            },
+            raw: true
         });
-
-        enhancedReview.Spots = await Promise.all(spots.map(async spot => {
-            const enhancedSpot = spot.get({ plain: true }); // Convert Sequelize instance to plain object
-
-            const image = await SpotImage.findAll({
+            const spotImages = await SpotImage.findOne({
                 where: {
-                    spotId: spot.id,
-                    preview: true
-                }
+                    [Op.and]: [
+                        {
+                            spotId: spots.id,
+                        },
+                        {
+                            preview: true
+                        }
+                    ]
+                },
+                attributes: {
+                    exclude: ['id', 'preview']
+                },
+                raw: true
             });
-
-            if (!image.length) {
-                enhancedSpot.previewImage = null
+            if (!spotImages) {
+                spots.previewImage = null
             } else {
-                enhancedSpot.previewImage = image[0]['url'];
+                spots.previewImage = spotImages['url'];
             }
-
-            return enhancedSpot;
-        }));
-
+        review.Spot = spots;
         const images = await ReviewImage.findAll({
             where: {
                 reviewId: review.id
             },
             attributes: {
                 exclude: ['reviewId', 'createdAt', 'updatedAt']
-            }
+            },
+            raw: true
         });
-
-        enhancedReview.ReviewImages = images;
-
-        return enhancedReview;
-    }));
-
-    res.json({
-        'Reviews': enhancedReviews
-    });
+        review.ReviewImages = images
+    }
+    res.json({"Reviews": reviews });
 });
-
-
-
-
 
 
 
