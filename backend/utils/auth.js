@@ -93,5 +93,28 @@ const requireAuthor = async function (req, res, next) {
   }
 };
 
+// auth for Proper Review
 
-  module.exports = { setTokenCookie, restoreUser, requireAuth, requireAuthor };
+const requireAuthorReview = async function(req, res, next) {
+  const reviewid = req.params.reviewId;
+  const userId = req.user.id;
+  const review = await Review.findByPk(reviewid);
+  if(!review) {
+    res.status(404).json({
+      "message": "Review couldn't be found"
+    })
+  }
+
+  const userReviewId = review.userId;
+  if(userId === userReviewId) {
+    return next();
+  } else {
+    const err = new Error('Unauthorized')
+    err.message = 'Unauthorized to do anything with this Review';
+    err.status = 403;
+    return next(err)
+  }
+}
+
+
+  module.exports = { setTokenCookie, restoreUser, requireAuth, requireAuthor, requireAuthorReview };

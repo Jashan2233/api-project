@@ -76,6 +76,67 @@ router.get('/current', requireAuth, async (req, res, next) => {
     res.json({"Reviews": reviews });
 });
 
+// add an Image to a review based on Review ID
 
+router.post('/:reviewId/images', requireAuth, requireAuthorReview, async(req, res, next) => {
+    const reviewId = req.params.reviewId;
+    const review = await Review.findByPk(reviewId);
+    const reviewImages = await ReviewImage.findAll({
+        where: {
+            reviewId
+        }
+    });
+    if(reviewImages.length === 10) {
+        return res.status(403).json({
+            "message": "Maximum number of images for this resource was reached"
+        })
+    }
+    const { url } = req.body;
+
+    const reviewImage = await ReviewImage.create({
+        reviewId,
+        url,
+    });
+    const imageData = await ReviewImage.scope('defaultScope').findByPk(reviewImage.id)
+    res.json(imageData);
+})
+
+const validateReview = [
+    check('review')
+        .exists({ checkFalsy: true })
+        .withMessage('Review text is required'),
+    check('stars')
+        .exists({ checkFalsy: true })
+        .isInt({ min: 1, max: 5 })
+        .withMessage('Stars must be an integer from 1 to 5'),
+    handleValidationErrors
+];
+
+// Edit a review based on Review ID
+router.put('/:reviewId', requireAuth, requireAuthorReview, validateReview, async(req, res, next) => {
+    const reviewId = req.params.reviewId;
+    const updateReview = await Review.findByPk(reviewId);
+    const { review, stars } = req.body;
+
+    if(review) {
+        updateReview.review = review;
+    }
+    if(stars) {
+        updateReview.stars = stars;
+    }
+    await updateReview.save();
+    res.json(updateReview)
+});
+
+//Delete a Review based on ReviewId
+
+router.delete('/:reviewId', requireAuth, requireAuthorReview, async (req, res, next) => {
+    const reviewId = req.params.reviewId;
+    const deleteReview = await Review.findByPk(reviewId);
+    await deleteReview.destroy();
+    res.json({
+        "message": "Successfully deleted"
+    });
+});
 
 module.exports = router;
