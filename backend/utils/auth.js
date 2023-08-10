@@ -116,5 +116,76 @@ const requireAuthorReview = async function(req, res, next) {
   }
 }
 
+//required to create bookings
+const requireAuthorCreateBooking = async function (req, res, next) {
+    const userId = req.user.id;
+    const spotId = req.params.spotId;
+    const spot = await Spot.findByPk(spotId);
+    if (!spot) {
+        return res.status(404).json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+    const ownerId = spot.ownerId;
+    if (userId === ownerId) {
+        const err = new Error('Unauthorized');
+        err.message = 'You cant book your place';
+        err.status = 403;
+        return next(err);
+    } else {
+        return next();
+    }
+}
 
-  module.exports = { setTokenCookie, restoreUser, requireAuth, requireAuthor, requireAuthorReview };
+const requireAuthorBooking = async function (req, res, next) {
+  const userId = req.user.id;
+  const bookingId = req.params.bookingId;
+  const booking = await Booking.findByPk(bookingId);
+  if (!booking) {
+      res.status(404).json({
+          "message": "Booking couldn't be found",
+          "statusCode": 404
+      });
+  } else {
+      const userBookingId = booking.userId;
+      if (userId === userBookingId) {
+          next();
+      } else {
+          const err = new Error('Unauthorized');
+          err.message = 'This booking doesnt belong to you';
+          err.status = 403;
+          return next(err);
+      }
+  }
+}
+
+//required for booking(delete)
+
+const requireAuthorDeleteBooking = async function (req, res, next) {
+    const userId = req.user.id;
+    const bookingId = req.params.bookingId;
+    const booking = await Booking.findByPk(bookingId);
+    if (!booking) {
+        res.status(404).json({
+            "message": "Booking couldn't be found",
+            "statusCode": 404
+        });
+    } else {
+        const spotId = booking.spotId;
+        const spot = await Spot.findByPk(spotId);
+        const ownerId = spot.ownerId;
+        const userBookingId = booking.userId;
+        if (userId === userBookingId || userId === ownerId) {
+            next()
+        } else {
+            const err = new Error('Unauthorized');
+            err.message = 'This is not your booking or you are not the owner of the booking spot';
+            err.status = 403;
+            return next(err);
+        }
+    }
+}
+
+
+  module.exports = { setTokenCookie, restoreUser, requireAuth, requireAuthor, requireAuthorReview, requireAuthorBooking, requireAuthorDeleteBooking, requireAuthorCreateBooking };
