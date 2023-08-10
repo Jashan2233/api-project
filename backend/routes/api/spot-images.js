@@ -1,0 +1,23 @@
+const express = require('express');
+
+const { setTokenCookie, requireAuth, requireSpotImage } = require('../../utils/auth.js');
+const { User, Booking, Spot, SpotImage } = require('../../db/models');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
+const { Op } = require('sequelize');
+
+const router = express.Router()
+
+// Delete Spot Image
+
+router.delete('/:imageId', requireAuth, requireSpotImage, async (req,res) => {
+    const spotImageId = req.params.imageId;
+    const spotImage = await SpotImage.findByPk(spotImageId);
+    await res.spotImage.destroy();
+    res.status(200).json({
+        "message": "Successfully deleted"
+    })
+})
+
+
+module.exports = router

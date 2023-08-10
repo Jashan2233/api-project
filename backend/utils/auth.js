@@ -187,5 +187,63 @@ const requireAuthorDeleteBooking = async function (req, res, next) {
     }
 }
 
+//required to delete spot images
 
-  module.exports = { setTokenCookie, restoreUser, requireAuth, requireAuthor, requireAuthorReview, requireAuthorBooking, requireAuthorDeleteBooking, requireAuthorCreateBooking };
+const requireSpotImage = async function (req, res, next) {
+  const userId = req.user.id;
+  const spotImageId = req.params.imageId;
+  const spotImage = await SpotImage.findByPk(spotImageId, {
+      attributes: ['spotId']
+  });
+
+  if (!spotImage) {
+      res.status(404).json({
+          "message": "Spot Image couldn't be found",
+          "statusCode": 404
+      })
+  } else {
+      const spotId = spotImage.spotId;
+
+      const spot = await Spot.findByPk(spotId);
+      const ownerId = spot.ownerId;
+      if (userId === ownerId) {
+          next()
+      } else {
+          const err = new Error('Unauthorized');
+          err.message = 'You are not the owner of this spot';
+          err.status = 403;
+          next(err);
+      }
+  }
+}
+
+//required to delete review images
+
+const requireReviewImage = async function (req, res, next) {
+  const userId = req.user.id;
+  const reviewImageId = req.params.imageId;
+  const reviewImage = await ReviewImage.findByPk(reviewImageId, {
+      attributes: ['reviewId']
+  });
+  if (!reviewImage) {
+      res.status(404).json({
+          "message": "Review Image couldn't be found",
+          "statusCode": 404
+      })
+  } else {
+      const reviewId = reviewImage.reviewId;
+      const review = await Review.findByPk(reviewId);
+      const userReviewId = review.userId;
+      if (userId === userReviewId) {
+          next();
+      } else {
+          const err = new Error('Unauthorized');
+          err.message = 'You did not write this review';
+          err.status = 403;
+          next(err);
+      }
+  }
+}
+
+
+  module.exports = { setTokenCookie, restoreUser, requireAuth, requireAuthor, requireAuthorReview, requireAuthorBooking, requireAuthorDeleteBooking, requireAuthorCreateBooking, requireReviewImage, requireSpotImage };
