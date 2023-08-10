@@ -279,7 +279,7 @@ router.post('/:spotId/images', requireAuth, requireAuthor, async (req, res, next
             spotId
         })
         const newImageId = image.id
-        const imageData = await SpotImage.scope('defaultScope').findByPk(newId);
+        const imageData = await SpotImage.scope('defaultScope').findByPk(newImageId);
         res.json(imageData)
     } else {
         res.status(404).json({
