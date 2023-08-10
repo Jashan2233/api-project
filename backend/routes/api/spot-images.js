@@ -10,13 +10,14 @@ const router = express.Router()
 
 // Delete Spot Image
 
-router.delete('/:imageId', requireAuth, requireSpotImage, async (req,res) => {
+router.delete('/:imageId', requireAuth, requireSpotImage, async (req, res, next) => {
     const spotImageId = req.params.imageId;
     const spotImage = await SpotImage.findByPk(spotImageId);
-    await res.spotImage.destroy();
-    res.status(200).json({
-        "message": "Successfully deleted"
-    })
+    await spotImage.destroy();
+    res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+    });
 })
 
 
