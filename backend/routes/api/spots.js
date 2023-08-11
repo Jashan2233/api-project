@@ -135,7 +135,7 @@ router.get('/current', requireAuth, async (req, res) => {
 
    const spots = await Spot.findAll({
     where: {
-        ownerid: id
+        ownerId: id
     },
     attributes: {
         include: [
@@ -266,7 +266,7 @@ router.post('/', requireAuth, validateCreateSpot, async (req, res, next) => {
     res.json(spot)
 })
 
-// Add an Image to a spoit with SpotId!
+// Add an Image to a spoit with SpotId -- fixed!
 
 router.post('/:spotId/images', requireAuth, requireAuthor, async (req, res, next) => {
     const spotId = req.params.spotId;
