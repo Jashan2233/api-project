@@ -80,7 +80,10 @@ router.get('/',validateQuery, async (req, res, next) => {
                 [
                     sequelize.fn('ROUND',sequelize.fn('AVG', sequelize.col('Reviews.stars')),2), 'avgRating'
                 ],
-            ]
+            ],
+            order: [
+                ['id', 'ASC'] // this orders by the id column in ascending order
+            ],
         },
         include: [
             {
