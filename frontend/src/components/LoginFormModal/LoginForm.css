@@ -1,9 +1,9 @@
-/* h1 {
+ h1 {
     text-align: center;
     font-size: 2.5rem;
     color: #006400;
     margin-bottom: 20px;
-  }
+   }
 
   form {
     width: 300px;
@@ -51,4 +51,4 @@
   .modal-buttons:disabled {
     background-color: #ccc;
     cursor: not-allowed;
-  } */
+  }

@@ -1,4 +1,4 @@
-/* h1 {
+ h1 {
     text-align: center;
     font-size: 2.5rem;
     color: #006400;
@@ -34,7 +34,7 @@
 
   #sign-up-btn {
     display: block;
-    width: 100%;
+    width: 100;
     padding: 10px;
     border: none;
     border-radius: 10px;
@@ -55,4 +55,4 @@
     background-color: #ccc;
     cursor: not-allowed;
     color: grey;
-  } */
+  }
