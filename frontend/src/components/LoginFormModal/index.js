@@ -25,6 +25,17 @@ function LoginFormModal() {
       });
   };
 
+  // Demo User
+  const demoUser = (e) => {
+    e.preventDefault();
+    return dispatch(
+      sessionActions.login({ credential: "Demo-lition", password: "password" })
+    ).then(() => {
+      closeModal();
+      //history.push("/");
+    });
+  };
+
   return (
     <>
       <h1>Log In</h1>
@@ -48,7 +59,12 @@ function LoginFormModal() {
           />
         </label>
         {errors.credential && <p>{errors.credential}</p>}
-        <button type="submit">Log In</button>
+        <button className="modal-buttons" type="submit">
+          Log In
+        </button>
+        <button className="modal-buttons" onClick={demoUser}>
+          Demo User
+        </button>
       </form>
     </>
   );
