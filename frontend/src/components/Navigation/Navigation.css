@@ -20,6 +20,11 @@
     top: 0px;
     z-index: 20;
 }
+
+.menuButton {
+    text-decoration: none;
+    color: rgb(67, 170, 204);
+}
 /*
 ul {
     list-style: none;

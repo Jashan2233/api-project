@@ -1,15 +1,17 @@
-// frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
+import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { NavLink, useHistory } from "react-router-dom";
+import "./ProfileButton.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const history = useHistory("/");
 
   const openMenu = () => {
     if (showMenu) return;
@@ -36,43 +38,69 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
+    history.push("/");
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const navLinkSpotName = "nav-link-create" + (user ? "" : " hidden");
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <div className="new-spot-link">
+        <div>
+          <NavLink
+            className={navLinkSpotName}
+            to="/spots/new"
+            style={{ textDecoration: "none" }}
+          >
+            Create a New Spot
+          </NavLink>
+        </div>
+      </div>
+
+      <button
+        onClick={openMenu}
+        id="profile-button"
+        style={{ cursor: "pointer" }}
+      >
+        <i class="fa-solid fa-bars" style={{ fontSize: "20px" }}></i>
+        <i className="fas fa-user-circle" style={{ fontSize: "20px" }} />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>
-              {user.firstName} {user.lastName}
-            </li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
+            <div className="profile-container">
+              <div className="profile-drop">
+                <div id="hello">Hello, {user.firstName}</div>
+                <div id="hello-email">{user.email}</div>
+                <NavLink
+                  id="hello-manage"
+                  to="/spots/current"
+                  style={{ textDecoration: "none" }}
+                  onClick={(e) => closeMenu()}
+                >
+                  Manage Spots
+                </NavLink>
+                <button id="logout-button" onClick={logout}>
+                  Log Out
+                </button>
+              </div>
+            </div>
           </>
         ) : (
           <>
-            <li>
-              <OpenModalButton
-                buttonText="Log In"
-                onButtonClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-            </li>
-            <li>
-              <OpenModalButton
-                buttonText="Sign Up"
-                onButtonClick={closeMenu}
+            <div className="su-li">
+              <OpenModalMenuItem
+                itemText="Sign Up"
+                onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
               />
-            </li>
+              <OpenModalMenuItem
+                itemText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
+            </div>
           </>
         )}
       </ul>
