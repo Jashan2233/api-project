@@ -8,7 +8,6 @@ import "./SpotShow.css";
 import DeleteReviewModal from "./DeleteReviewModal";
 
 const SpotShow = ({ spotId }) => {
-  console.log(spotId);
   const review = useSelector((state) => state.reviews);
   const reviewArr = Object.values(review.spot);
 
