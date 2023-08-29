@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
       <Link to="/">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png"
-          style={{ width: "102px", height: "32px" }}
+          style={{ width: "105px", height: "32px" }}
         />
       </Link>
       <div className="meunButton">

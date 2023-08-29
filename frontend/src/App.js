@@ -4,6 +4,7 @@ import { Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Spots from "./components/Spot";
+import SpotId from "./components/SpotId";
 import Form from "./components/FormSpot";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/spots/new">
             <Form />
+          </Route>
+          <Route path="/spots/:spotId">
+            <SpotId />
           </Route>
         </Switch>
       )}
