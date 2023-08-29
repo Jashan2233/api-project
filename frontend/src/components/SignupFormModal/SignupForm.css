@@ -1,0 +1,9 @@
+.signup-errors {
+    color: red;
+    display: flex;
+    justify-content: center;
+}
+
+#sign-up-btn {
+    cursor: pointer;
+}

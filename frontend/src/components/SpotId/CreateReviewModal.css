@@ -1,0 +1,78 @@
+#hidden-review {
+    display: hidden;
+}
+
+#submit-review-button {
+    background-color: red;
+    color: white;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+#submit-review-not-valid {
+    background-color: white;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.create-review-modal {
+    margin-left: -150px;
+    margin-right: -150px;
+}
+
+.create-review-modal > h3 {
+    display: flex;
+    justify-content: center;
+}
+
+.stars-review {
+    display: flex;
+    justify-content: center;
+}
+
+.stars-review {
+    cursor: pointer;
+}
+
+.delete-review-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.delete-yes-no-buttons {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: -250px;
+    margin-right: -250px;
+    gap: 10px;
+}
+
+#delete-yes {
+    width: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: red;
+    color: white;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
+}
+
+#delete-no {
+    width: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(107, 104, 104);
+    color: white;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
+}

@@ -1,10 +1,15 @@
-/* h1 {
-  display: flex;
-  justify-content: center;
-  color: black
+#modal-content {
+  padding-bottom: 50px;
+  border-radius: 15px 15px 15px;
 }
 
-   form {
+h1 {
+    display: flex;
+    justify-content: center;
+    color: black
+}
+
+form {
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -14,30 +19,45 @@
 }
 
 label {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+button {
+    /* margin-top: 50px; */
+    margin-left: 370px;
+    margin-right: 370px;
 }
 
 .modal-bars {
-  padding-right: 50px;
-  padding-left: 50px;
-  box-shadow: 3px 3px 3px grey;
-  display: flex;
-  justify-content: center;
+    padding-right: 50px;
+    padding-left: 50px;
+    box-shadow: 3px 3px 3px grey;
+    display: flex;
+    justify-content: center;
 }
 
-  #wrong-password {
-    color: #ff4500;
-    margin: 10px 0;
-    text-align: center;
-  }
-
-  .modal-buttons {
+.modal-buttons {
     padding-right: 50px;
     padding-left: 50px;
     color: grey;
     background-color: white;
     box-shadow: 3px 3px 3px grey;
     cursor: pointer;
-} */
+}
+
+#wrong-password {
+    margin-left: 325px;
+    margin-bottom: -10px;
+    color: red;
+}
+
+/* .modal-bars-valid {
+    padding-right: 50px;
+    padding-left: 50px;
+    background-color: red;
+    box-shadow: 3px 3px 3px grey;
+    cursor: pointer;
+    /* color: red */
+/* } */

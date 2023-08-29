@@ -1,0 +1,143 @@
+.title-info {
+    margin-left: 50px;
+}
+
+.spotId-container {
+    margin-bottom: 10px;
+}
+
+#spotId-main-image {
+    height: 300px;
+    object-fit: cover;
+    margin-left: 50px;
+    width: 54%;
+    margin-right: 2px;
+    /* border-radius: 15px 0px 0px 15px; */
+}
+
+/* #spotId-main-image {
+    height: 300px;
+    object-fit: cover;
+    margin-right: 2px;
+    width: 100%
+    /* border-radius: 15px 0px 0px 15px; */
+/* } */
+
+.more-image {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+}
+
+#top-right {
+    border-radius: 0px 15px 0px 0px;
+}
+
+#bottom-right {
+    border-radius: 0px 0px 15px 0px;
+}
+
+/* .image-container {
+    display: flex;
+    margin-left: 50px;
+    width: fit-content;
+} */
+
+.image-container {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2px;
+    width: 300px;
+}
+
+/* .image-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2px;
+    width: calc(50% - 2px);
+  } */
+
+
+.grid-images {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* .grid-images {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+} */
+
+.description-container {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(175, 173, 173);
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+/* .left-description {
+    margin-left: 50px;
+} */
+
+.right-description {
+    border: 2px solid black;
+    border-radius: 10px 10px 10px;
+    margin-right: 50px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: fit-content
+}
+
+.price-star {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+#reserve-button {
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-left: 80px;
+    padding-right: 80px;
+    background-color: #FD4556;
+    color: white;
+    box-shadow: 3px 3px 3px rgba(13, 13, 14, 0.2);
+    cursor: pointer;
+}
+
+.top-reviews {
+    margin-top: 1rem;
+    display: flex;
+    margin-left: 50px;
+}
+
+#radiant-spot {
+    width: 30px;
+    /* border: 1px solid black; */
+}
+
+.inside-price-star {
+    display: flex;
+}
+
+#num-reviews {
+    margin-left: 10px;
+}
+
+.reviews-container {
+    margin-bottom: 100px;
+}

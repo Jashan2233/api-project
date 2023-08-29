@@ -37,6 +37,11 @@
     justify-content: space-between;
 }
 
+#radiant-front {
+    width: 30px;
+    height: 25px;
+}
+
 .tooltip {
     position: relative;
     display: inline-block;
