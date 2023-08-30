@@ -39,7 +39,7 @@ const UserSpot = () => {
         </div>
       </div>
       <div className="manage-spots-grid">
-        {spotsUser.map((spot) => (
+        {userSpots.map((spot) => (
           <div key={spot.id}>
             <>
               <NavLink to={`/spots/${spot.id}`}>

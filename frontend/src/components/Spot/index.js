@@ -29,7 +29,11 @@ const Spots = () => {
                 </div>
                 {spot.avgRating ? (
                   <div className="review">
-                    <b>{spot.avgRating.toFixed(1)}</b>
+                    <b>
+                      {" "}
+                      <i class="fa-solid fa-star"></i>
+                      {spot.avgRating.toFixed(1)}
+                    </b>
                   </div>
                 ) : (
                   <div className="review">

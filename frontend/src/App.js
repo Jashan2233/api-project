@@ -6,6 +6,8 @@ import Navigation from "./components/Navigation";
 import Spots from "./components/Spot";
 import SpotId from "./components/SpotId";
 import Form from "./components/FormSpot";
+import SpotUser from "./components/UserSpot";
+import SpotUpdateForm from "./components/SpotUpdateForm";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
@@ -25,6 +27,12 @@ function App() {
           </Route>
           <Route path="/spots/new">
             <Form />
+          </Route>
+          <Route path="/spots/current">
+            <SpotUser />
+          </Route>
+          <Route path="/spots/:spotId/edit">
+            <SpotUpdateForm />
           </Route>
           <Route path="/spots/:spotId">
             <SpotId />
