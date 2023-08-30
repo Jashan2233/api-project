@@ -17,6 +17,8 @@ const FormCreation = ({ spot }) => {
   const [state, setState] = useState("");
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
+  // const [lat, setLat] = useState(1);
+  // const [lng, setLng] = useState(1);
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [img2, setImg2] = useState("");
@@ -98,6 +100,8 @@ const FormCreation = ({ spot }) => {
         name,
         description,
         price,
+        lat: 15,
+        lng: 10,
       };
       const images = [image, img2, img3, img4, img5];
 

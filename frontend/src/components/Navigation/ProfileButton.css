@@ -1,11 +1,13 @@
 #profile-button {
-  margin-left: 1700px;
+  margin-left: 1600px;
   margin-right:  80px;;
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-radius: 25px 25px 25px;
+  display: flex;
+  flex-direction: row;
 }
 
 #profile-button > .fa-user-circle {
