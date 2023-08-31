@@ -56,15 +56,6 @@
     width: 300px;
 }
 
- /* .image-grid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2px;
-    width: calc(50% - 2px);
-  } */
-
-
 .grid-images {
     height: 150px;
     width: 100%;
@@ -123,11 +114,6 @@
     margin-top: 1rem;
     display: flex;
     margin-left: 50px;
-}
-
-#radiant-spot {
-    width: 30px;
-    /* border: 1px solid black; */
 }
 
 .inside-price-star {
