@@ -28,15 +28,19 @@ const UserSpot = () => {
     console.log("Please log in!");
   }
 
+  const renderCreateSpotButton = userSpots.length === 0;
+
   return (
     <>
       <div className="manage">
         <h2>Manage Spots</h2>
-        <div id="new-spot-manage">
-          <NavLink id="manage-spot-button" to="/spots/new">
-            Create a new Spot
-          </NavLink>
-        </div>
+        {renderCreateSpotButton && (
+          <div id="new-spot-manage">
+            <NavLink id="manage-spot-button" to="/spots/new">
+              Create a new Spot
+            </NavLink>
+          </div>
+        )}
       </div>
       <div className="manage-spots-grid">
         {userSpots.map((spot) => (
@@ -55,7 +59,7 @@ const UserSpot = () => {
                     </div>
                     {spot.avgRating ? (
                       <div className="review">
-                        <b> {spot.avgRating.toFixed(1)}</b>
+                        <b> {parseFloat(spot.avgRating).toFixed(1)}</b>
                       </div>
                     ) : (
                       <div className="review">

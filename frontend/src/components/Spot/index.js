@@ -32,7 +32,7 @@ const Spots = () => {
                     <b>
                       {" "}
                       <i class="fa-solid fa-star"></i>
-                      {spot.avgRating.toFixed(1)}
+                      {parseFloat(spot.avgRating).toFixed(1)}
                     </b>
                   </div>
                 ) : (
