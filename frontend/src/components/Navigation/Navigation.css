@@ -6,6 +6,14 @@
     display: flex;
 }
 
+#profile-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#profile-button {
+    margin-right: 50px;
+}
 
 .nav-bar {
     display: flex;
@@ -16,9 +24,9 @@
     padding-bottom: 10px;
     border-bottom: 1px solid rgb(173, 173, 173);
     background-color: white;
-     position: sticky;
+    /* position: sticky;
     top: 0px;
-    z-index: 20;
+    z-index: 20; */
 }
 
 ul {

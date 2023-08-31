@@ -48,7 +48,11 @@ function ProfileButton({ user }) {
     <>
       <div className="new-spot-link">
         <div>
-          <NavLink className={navLinkSpotName} to="/spots/new">
+          <NavLink
+            className={navLinkSpotName}
+            to="/spots/new"
+            style={{ textDecoration: "none" }}
+          >
             Create a New Spot
           </NavLink>
         </div>

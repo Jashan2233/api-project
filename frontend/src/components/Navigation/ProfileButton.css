@@ -1,13 +1,11 @@
 #profile-button {
-  margin-left: 1600px;
-  margin-right:  80px;;
+  margin-left: -500px;
+  margin-right:  80px;
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-radius: 25px 25px 25px;
-  display: flex;
-  flex-direction: row;
 }
 
 #profile-button > .fa-user-circle {
@@ -83,10 +81,9 @@
   cursor: pointer;
 }
 
-.nav-link-create {
-  display: flex;
-  margin-left: 1400px;
-  font-weight: bold;
-  font-size: 20px;
+.new-spot-link {
   color: black;
+  font-weight: bold;
+  font-size: 18px;
+  margin-left:790px;
 }

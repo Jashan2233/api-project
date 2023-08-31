@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAllSpotsThunk } from "../../store/spot";
 import { getReviewsThunk } from "../../store/review";
-import SpotIdReview from "./SpotShow";
+import SpotIdReview from "./SpotIdReview";
 import "./SpotId.css";
-import "./SpotShow.css";
+import "./SpotIdReview.css";
 
 const SpotId = () => {
   const dispatch = useDispatch();
@@ -14,8 +14,6 @@ const SpotId = () => {
   const oneSpot = useSelector((state) => state.spots.singleSpot);
   const reviewObj = useSelector((state) => state.reviews.spot);
   const newReview = Object.values(reviewObj);
-
-  console.log("~~~~~~~~", oneSpot.SpotImages);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -34,8 +32,6 @@ const SpotId = () => {
     alert("Feature Coming Soon");
   };
 
-  // const falseImages = oneSpot.SpotImages?.filter(img => img.preview === false
-  // add change to 60 logic
   if (!oneSpot.SpotImages) return null;
 
   return (
@@ -83,12 +79,12 @@ const SpotId = () => {
                 <b>${oneSpot.price}</b> night
               </div>
               <div className="inside-price-star">
+                <i class="fa-solid fa-star"></i>
                 <div></div>
 
                 <div>
-                  <i class="fa-solid fa-star"></i>
                   {+oneSpot.avgStarRating > 0
-                    ? `${oneSpot.avgStarRating.toFixed(1)} `
+                    ? `${oneSpot.avgStarRating} `
                     : "New "}
                   {oneSpot.numReviews ? <span>·</span> : ""}
                   {oneSpot.numReviews ? (
@@ -109,15 +105,14 @@ const SpotId = () => {
         </div>
         <div className="reviews-container">
           <div className="top-reviews">
-            <div></div>
-            {/* <div>{oneSpot.avgStarRating?.toFixed(1)} · {oneSpot.numReviews} reviews</div> */}
+            <div>
+              <i className="fa-solid fa-star"></i>
+            </div>
             {oneSpot.numReviews ? (
-              <>
-                <div>
-                  {oneSpot.avgStarRating?.toFixed(1)} · {oneSpot.numReviews}{" "}
-                  {oneSpot.numReviews === 1 ? "review" : "reviews"}
-                </div>
-              </>
+              <div>
+                {oneSpot.avgStarRating?.toFixed(1)} · {oneSpot.numReviews}{" "}
+                {oneSpot.numReviews === 1 ? "Review" : "Reviews"}
+              </div>
             ) : (
               <div>New</div>
             )}

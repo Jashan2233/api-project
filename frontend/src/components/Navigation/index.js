@@ -10,15 +10,13 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="nav-bar">
-      <Link to="/">
+      <NavLink to="/">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png"
           style={{ width: "105px", height: "32px" }}
         />
-      </Link>
-      <div className="meunButton">
-        {isLoaded && <ProfileButton user={sessionUser} />}
-      </div>
+      </NavLink>
+      {isLoaded && <ProfileButton user={sessionUser} />}
     </div>
   );
 }

@@ -4,10 +4,10 @@ import { getReviewsThunk } from "../../store/review";
 import { getSpotThunk } from "../../store/spot";
 import OpenModalButton from "../OpenModalButton";
 import CreateReviewModal from "./CreateReviewModal";
-import "./SpotShow.css";
+import "./SpotIdReview.css";
 import DeleteReviewModal from "./DeleteReviewModal";
 
-const SpotShow = ({ spotId }) => {
+const SpotIdReview = ({ spotId }) => {
   const review = useSelector((state) => state.reviews);
   const reviewArr = Object.values(review.spot);
 
@@ -90,4 +90,4 @@ const SpotShow = ({ spotId }) => {
   );
 };
 
-export default SpotShow;
+export default SpotIdReview;
