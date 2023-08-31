@@ -85,12 +85,12 @@ const SpotId = () => {
                 <div>
                   {+oneSpot.avgStarRating > 0
                     ? `${oneSpot.avgStarRating} `
-                    : "New "}
+                    : "New"}
                   {oneSpot.numReviews ? <span>·</span> : ""}
                   {oneSpot.numReviews ? (
                     <span>
-                      {oneSpot.numReviews} <i class="fa-solid fa-star"></i>
-                      {oneSpot.numReviews === 1 ? "review" : "reviews"}
+                      {oneSpot.numReviews}
+                      {oneSpot.numReviews === 1 ? " Review" : "reviews"}
                     </span>
                   ) : (
                     ""

@@ -12,9 +12,10 @@ function Navigation({ isLoaded }) {
     <div className="nav-bar">
       <NavLink to="/">
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png"
-          style={{ width: "105px", height: "32px" }}
-        />
+          className="logo"
+          src="https://png-files-for-api.s3.us-east-2.amazonaws.com/png/chillab.png"
+          alt="logo"
+        ></img>
       </NavLink>
       {isLoaded && <ProfileButton user={sessionUser} />}
     </div>

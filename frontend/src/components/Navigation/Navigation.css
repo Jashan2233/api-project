@@ -33,3 +33,8 @@ ul {
     list-style: none;
     position: fixed;
   }
+  .logo{
+    height: 75px;
+    width: 140px;
+    cursor: pointer;
+}
