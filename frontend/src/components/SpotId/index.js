@@ -14,7 +14,7 @@ const SpotId = () => {
   const oneSpot = useSelector((state) => state.spots.singleSpot);
   const reviewObj = useSelector((state) => state.reviews.spot);
   const newReview = Object.values(reviewObj);
-
+  console.log("Rendered!");
   console.log(newReview, "newReviews!!!!");
   console.log(oneSpot, "oneSpot!!!!");
 
