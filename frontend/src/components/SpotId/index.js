@@ -15,6 +15,9 @@ const SpotId = () => {
   const reviewObj = useSelector((state) => state.reviews.spot);
   const newReview = Object.values(reviewObj);
 
+  console.log(newReview, "newReviews!!!!");
+  console.log(oneSpot, "oneSpot!!!!");
+
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {

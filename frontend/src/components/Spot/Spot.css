@@ -15,7 +15,6 @@
 }
 
 .ind-spot {
-    /* border: 1px solid black; */
     padding-bottom: 10px;
     position: relative;
     width: 300px;
@@ -36,12 +35,17 @@
 .under-img {
     display: flex;
     justify-content: space-between;
+    margin-top: 15px;
+    margin-left: 10px;
 }
 
 .tooltip {
     position: relative;
     display: inline-block;
     width: 320px;
+    border: 4px solid rgb(224, 119, 189);
+    height: 200px;
+    border-radius: 20px;
 }
 
 .tooltip .tooltiptext {
@@ -76,5 +80,10 @@
 }
 
 i {
-    margin-right: 10px;
+    margin-right: 5px;
+}
+
+.price {
+    margin-left: 10px;
+    margin-top: 2px;
 }
