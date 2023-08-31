@@ -11,6 +11,10 @@ const UserSpot = () => {
   const spots = useSelector((state) => state.spots.allSpots);
   const allSpots = Object.values(spots);
   const history = useHistory();
+  const formattedRating = new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  }).format(spot.avgRating);
 
   const dispatch = useDispatch();
 
@@ -55,7 +59,7 @@ const UserSpot = () => {
                     </div>
                     {spot.avgRating ? (
                       <div className="review">
-                        <b>{spot.avgRating.toFixed(1)}</b>
+                        <b>{formattedRating}</b>
                       </div>
                     ) : (
                       <div className="review">

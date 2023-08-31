@@ -8,6 +8,10 @@ const Spots = () => {
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spots);
   const allSpots = Object.values(spots.allSpots);
+  const formattedRating = new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  }).format(spot.avgRating);
 
   useEffect(() => {
     dispatch(getAllSpotsThunk());
@@ -32,7 +36,7 @@ const Spots = () => {
                     <b>
                       {" "}
                       <i class="fa-solid fa-star"></i>
-                      {spot.avgRating.toFixed(1)}
+                      {formattedRating}
                     </b>
                   </div>
                 ) : (
