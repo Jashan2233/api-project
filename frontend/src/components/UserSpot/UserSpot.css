@@ -34,6 +34,7 @@
 .manage-review {
     display: flex;
     justify-content: space-between;
+    margin-right: -50px;
 }
 
 #spot-card-img {
