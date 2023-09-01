@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getReviewsThunk } from "../../store/review";
 import { getSpotThunk } from "../../store/spot";
 import OpenModalButton from "../OpenModalButton";
@@ -8,20 +8,50 @@ import "./SpotIdReview.css";
 import DeleteReviewModal from "./DeleteReviewModal";
 
 const SpotIdReview = ({ spotId }) => {
-  const reviews = useSelector((state) => state.reviews.spot);
+  console.log(spotId);
+  const review = useSelector((state) => state.reviews);
+  const reviewArr = Object.values(review.spot);
+  // console.log("this is the review", reviewArr)
+
   const user = useSelector((state) => state.session.user);
+  // console.log("testing", user.id)
+
   const spot = useSelector((state) => state.spots.singleSpot);
+  // console.log("this is the spot owner", spot.Owner.id)
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function fetchData() {
-      await dispatch(getReviewsThunk(spotId));
-      await dispatch(getSpotThunk(spotId));
-    }
-    fetchData();
-  }, [dispatch, spotId]);
+    dispatch(getReviewsThunk(spotId));
+    dispatch(getSpotThunk(spotId));
+  }, [dispatch]);
 
-  const userReview = user && reviews[user.id];
+  let userReview;
+
+  if (user) {
+    userReview = reviewArr.find((review) => review.User?.id === user?.id);
+  }
+
+  if (!user || !user.id) {
+    return (
+      <>
+        <div className="all-reviews-grid">
+          {reviewArr.toReversed().map((review) => (
+            <>
+              <h3 className="review-name">{review?.User?.firstName}</h3>
+              <h5>
+                {new Date(review.createdAt).toLocaleString("default", {
+                  month: "long",
+                })}{" "}
+                {new Date(review.createdAt).getFullYear()}
+              </h5>
+              <h4>{review.review}</h4>
+            </>
+          ))}
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -31,38 +61,34 @@ const SpotIdReview = ({ spotId }) => {
             buttonText="Post Your Review"
             modalComponent={<CreateReviewModal spotId={spotId} />}
           />
-          {!Object.values(reviews).length &&
-            !userReview &&
-            user?.id !== spot.Owner?.id && (
-              <p id="be-first">Be the first to post a review!</p>
-            )}
+          {!reviewArr.length && !userReview && user?.id !== spot.Owner?.id && (
+            <p id="be-first">Be the first to post a review!</p>
+          )}
         </div>
       )}
       <div className="all-reviews-grid">
-        {Object.values(reviews)
-          .reverse()
-          .map((review) => (
-            <div key={review.id}>
-              <h3 className="review-name">{review?.User?.firstName}</h3>
-              <h5>
-                {new Date(review.createdAt).toLocaleString("default", {
-                  month: "long",
-                })}{" "}
-                {new Date(review.createdAt).getFullYear()}
-              </h5>
-              <h4>{review.review}</h4>
-              {user.id === review.userId && (
-                <div id="delete-review-home">
-                  <OpenModalButton
-                    buttonText="Delete Review"
-                    modalComponent={
-                      <DeleteReviewModal spotId={spotId} reviewId={review.id} />
-                    }
-                  />
-                </div>
-              )}
-            </div>
-          ))}
+        {reviewArr.toReversed().map((review) => (
+          <>
+            <h3 className="review-name">{review?.User?.firstName}</h3>
+            <h5>
+              {new Date(review.createdAt).toLocaleString("default", {
+                month: "long",
+              })}{" "}
+              {new Date(review.createdAt).getFullYear()}
+            </h5>
+            <h4>{review.review}</h4>
+            {user.id === review.userId && (
+              <div id="delete-review-home">
+                <OpenModalButton
+                  buttonText="Delete Review"
+                  modalComponent={
+                    <DeleteReviewModal spotId={spotId} reviewId={review.id} />
+                  }
+                />
+              </div>
+            )}
+          </>
+        ))}
       </div>
     </>
   );

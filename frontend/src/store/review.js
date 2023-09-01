@@ -50,8 +50,8 @@ export const createReviewThunk = (review, spotId) => async (dispatch) => {
 
   if (response.ok) {
     const review = await response.json();
-    dispatch(createReview(review));
-    dispatch(getReviewsThunk(spotId));
+    await dispatch(createReview(review));
+    await dispatch(getReviewsThunk(spotId));
     return review;
   }
 };
@@ -62,8 +62,8 @@ export const deleteReviewThunk = (reviewId, spotId) => async (dispatch) => {
   });
 
   if (response.ok) {
-    dispatch(deleteReview(reviewId));
-    dispatch(getSpotThunk(spotId));
+    await dispatch(deleteReview(reviewId));
+    await dispatch(getSpotThunk(spotId));
   }
 };
 

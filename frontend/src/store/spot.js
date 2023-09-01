@@ -61,6 +61,7 @@ export const getSpotThunk = (spotId) => async (dispatch) => {
   console.log(response, "Response!!!");
   if (response.ok) {
     const spot = await response.json();
+    console.log(spot, "spot");
     dispatch(getSpot(spot));
     return spot;
   }

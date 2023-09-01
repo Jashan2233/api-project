@@ -34,7 +34,7 @@ const FormCreation = ({ spot }) => {
 
   useEffect(() => {
     const errors = {};
-    if (!country) errors.country = "Country is required";
+    if (!country || !String(country)) errors.country = "Country is required";
     if (country.length < 5 || country.length > 50)
       errors.country = "Please enter a valid country";
 

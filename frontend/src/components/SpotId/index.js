@@ -14,9 +14,16 @@ const SpotId = () => {
   const oneSpot = useSelector((state) => state.spots.singleSpot);
   const reviewObj = useSelector((state) => state.reviews.spot);
   const newReview = Object.values(reviewObj);
-  console.log("Rendered!");
-  console.log(newReview, "newReviews!!!!");
-  console.log(oneSpot, "oneSpot!!!!");
+
+  //Getting average Rating for a Spot
+  let avg = 0;
+  if (newReview.length) {
+    let sum = 0;
+    for (let i = 0; i < newReview.length; i++) {
+      sum += newReview[i].stars;
+    }
+    avg = sum / newReview.length;
+  }
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -86,9 +93,7 @@ const SpotId = () => {
                 <div></div>
 
                 <div>
-                  {+oneSpot.avgStarRating > 0
-                    ? `${oneSpot.avgStarRating} `
-                    : "New"}
+                  {avg > 0 ? `${avg} ` : "New"}
                   {oneSpot.numReviews ? <span>·</span> : ""}
                   {oneSpot.numReviews ? (
                     <span>
@@ -113,8 +118,7 @@ const SpotId = () => {
             </div>
             {oneSpot.numReviews ? (
               <div>
-                {parseFloat(oneSpot.avgStarRating)?.toFixed(1)} ·{" "}
-                {oneSpot.numReviews}{" "}
+                {parseFloat(avg)?.toFixed(1)} · {oneSpot.numReviews}{" "}
                 {oneSpot.numReviews === 1 ? "Review" : "Reviews"}
               </div>
             ) : (
