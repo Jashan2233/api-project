@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { getReviewsThunk } from "../../store/review";
 import { getSpotThunk } from "../../store/spot";
 import OpenModalButton from "../OpenModalButton";
@@ -8,46 +8,20 @@ import "./SpotIdReview.css";
 import DeleteReviewModal from "./DeleteReviewModal";
 
 const SpotIdReview = ({ spotId }) => {
-  const review = useSelector((state) => state.reviews);
-  const reviewArr = Object.values(review.spot);
-
+  const reviews = useSelector((state) => state.reviews.spot);
   const user = useSelector((state) => state.session.user);
-
   const spot = useSelector((state) => state.spots.singleSpot);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getReviewsThunk(spotId));
-    dispatch(getSpotThunk(spotId));
-  }, [dispatch]);
+    async function fetchData() {
+      await dispatch(getReviewsThunk(spotId));
+      await dispatch(getSpotThunk(spotId));
+    }
+    fetchData();
+  }, [dispatch, spotId]);
 
-  let userReview;
-
-  if (user) {
-    userReview = reviewArr.find((review) => review.User?.id === user?.id);
-  }
-
-  if (!user || !user.id) {
-    return (
-      <>
-        <div className="all-reviews-grid">
-          {reviewArr.toReversed().map((review) => (
-            <>
-              <h3 className="review-name">{review?.User?.firstName}</h3>
-              <h5>
-                {new Date(review.createdAt).toLocaleString("default", {
-                  month: "long",
-                })}{" "}
-                {new Date(review.createdAt).getFullYear()}
-              </h5>
-              <h4>{review.review}</h4>
-            </>
-          ))}
-        </div>
-      </>
-    );
-  }
+  const userReview = user && reviews[user.id];
 
   return (
     <>
@@ -57,34 +31,38 @@ const SpotIdReview = ({ spotId }) => {
             buttonText="Post Your Review"
             modalComponent={<CreateReviewModal spotId={spotId} />}
           />
-          {!reviewArr.length && !userReview && user?.id !== spot.Owner?.id && (
-            <p id="be-first">Be the first to post a review!</p>
-          )}
+          {!Object.values(reviews).length &&
+            !userReview &&
+            user?.id !== spot.Owner?.id && (
+              <p id="be-first">Be the first to post a review!</p>
+            )}
         </div>
       )}
       <div className="all-reviews-grid">
-        {reviewArr.toReversed().map((review) => (
-          <>
-            <h3 className="review-name">{review?.User?.firstName}</h3>
-            <h5>
-              {new Date(review.createdAt).toLocaleString("default", {
-                month: "long",
-              })}{" "}
-              {new Date(review.createdAt).getFullYear()}
-            </h5>
-            <h4>{review.review}</h4>
-            {user.id === review.userId && (
-              <div id="delete-review-home">
-                <OpenModalButton
-                  buttonText="Delete Review"
-                  modalComponent={
-                    <DeleteReviewModal spotId={spotId} reviewId={review.id} />
-                  }
-                />
-              </div>
-            )}
-          </>
-        ))}
+        {Object.values(reviews)
+          .reverse()
+          .map((review) => (
+            <div key={review.id}>
+              <h3 className="review-name">{review?.User?.firstName}</h3>
+              <h5>
+                {new Date(review.createdAt).toLocaleString("default", {
+                  month: "long",
+                })}{" "}
+                {new Date(review.createdAt).getFullYear()}
+              </h5>
+              <h4>{review.review}</h4>
+              {user.id === review.userId && (
+                <div id="delete-review-home">
+                  <OpenModalButton
+                    buttonText="Delete Review"
+                    modalComponent={
+                      <DeleteReviewModal spotId={spotId} reviewId={review.id} />
+                    }
+                  />
+                </div>
+              )}
+            </div>
+          ))}
       </div>
     </>
   );

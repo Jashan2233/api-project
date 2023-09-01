@@ -16,37 +16,39 @@ const Spots = () => {
   return (
     <>
       <div className="spots-container">
-        {allSpots.map((spot) => (
-          <NavLink to={`/spots/${spot.id}`}>
-            <div className="ind-spot">
-              <div className="tooltip">
-                <img id="spot-img" src={`${spot.previewImage}`} alt="img" />
-                <span className="tooltiptext">{spot.name}</span>
-              </div>
-              <div className="under-img">
-                <div className="city">
-                  {spot.city}, {spot.state}
+        <div className="spots-grid">
+          {allSpots.map((spot) => (
+            <NavLink to={`/spots/${spot.id}`} key={spot.id}>
+              <div className="ind-spot">
+                <div className="tooltip">
+                  <img id="spot-img" src={`${spot.previewImage}`} alt="img" />
+                  <span className="tooltiptext">{spot.name}</span>
                 </div>
-                {spot.avgRating ? (
-                  <div className="review">
-                    <b>
-                      {" "}
-                      <i class="fa-solid fa-star"></i>
-                      {parseFloat(spot.avgRating).toFixed(1)}
-                    </b>
+                <div className="under-img">
+                  <div className="city">
+                    {spot.city}, {spot.state}
                   </div>
-                ) : (
-                  <div className="review">
-                    <b>New</b>
-                  </div>
-                )}
+                  {spot.avgRating ? (
+                    <div className="review">
+                      <b>
+                        {" "}
+                        <i className="fa-solid fa-star"></i>
+                        {parseFloat(spot.avgRating).toFixed(1)}
+                      </b>
+                    </div>
+                  ) : (
+                    <div className="review">
+                      <b>New</b>
+                    </div>
+                  )}
+                </div>
+                <div className="price">
+                  <b>${spot.price}</b> night
+                </div>
               </div>
-              <div className="price">
-                <b>${spot.price}</b> night
-              </div>
-            </div>
-          </NavLink>
-        ))}
+            </NavLink>
+          ))}
+        </div>
       </div>
     </>
   );
