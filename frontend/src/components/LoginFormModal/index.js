@@ -35,6 +35,10 @@ function LoginFormModal() {
       //history.push("/");
     });
   };
+  const loginStyle =
+    credential.length >= 4 && password.length >= 6
+      ? { backgroundColor: "red", color: "white" }
+      : { backgroundColor: "white" };
 
   return (
     <>
@@ -59,7 +63,12 @@ function LoginFormModal() {
           />
         </label>
         {errors.credential && <p>{errors.credential}</p>}
-        <button className="modal-buttons" type="submit">
+        <button
+          className="modal-buttons"
+          type="submit"
+          style={loginStyle}
+          disabled={!credential.length >= 4 || !password.length >= 6}
+        >
           Log In
         </button>
         <button className="modal-buttons" onClick={demoUser}>

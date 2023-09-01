@@ -59,10 +59,12 @@ const UserSpot = () => {
                     </div>
                     {spot.avgRating ? (
                       <div className="review">
+                        <i className="fa-solid fa-star"></i>
                         <b> {parseFloat(spot.avgRating).toFixed(1)}</b>
                       </div>
                     ) : (
                       <div className="review">
+                        <i className="fa-solid fa-star"></i>
                         <b>New</b>
                       </div>
                     )}
