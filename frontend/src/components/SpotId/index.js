@@ -98,7 +98,7 @@ const SpotId = () => {
                   {oneSpot.numReviews ? (
                     <span>
                       {oneSpot.numReviews}
-                      {oneSpot.numReviews === 1 ? " Review" : "reviews"}
+                      {oneSpot.numReviews === 1 ? " Review" : " Reviews"}
                     </span>
                   ) : (
                     ""

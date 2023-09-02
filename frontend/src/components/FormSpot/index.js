@@ -149,7 +149,7 @@ const FormCreation = ({ spot }) => {
               )}
               <input
                 id="form-address"
-                placeholder="Address"
+                placeholder="Street Address"
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}

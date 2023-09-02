@@ -7,10 +7,10 @@ import "./SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -24,10 +24,10 @@ function SignupFormModal() {
       setErrors({});
       return dispatch(
         sessionActions.signup({
-          email,
-          username,
           firstName,
           lastName,
+          email,
+          username,
           password,
         })
       )
@@ -80,24 +80,6 @@ function SignupFormModal() {
         {errors.email && <p className="signup-errors">{errors.email}</p>}
         <label>
           <input
-            placeholder="Email"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="Username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
             placeholder="First Name"
             type="text"
             value={firstName}
@@ -111,6 +93,24 @@ function SignupFormModal() {
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          <input
+            placeholder="Email"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          <input
+            placeholder="Username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </label>

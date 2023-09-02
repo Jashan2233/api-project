@@ -1,63 +1,63 @@
 #modal-content {
-  padding-bottom: 50px;
-  border-radius: 15px 15px 15px;
-}
+    padding-bottom: 50px;
+    border-radius: 15px 15px 15px;
+  }
 
-h1 {
-    display: flex;
-    justify-content: center;
-    color: black
-}
+  h1 {
+      display: flex;
+      justify-content: center;
+      color: black
+  }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    margin-left: -100px;
-    margin-right: -100px;
-    width: fit-content;
-}
+  form {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin-left: -100px;
+      margin-right: -100px;
+      width: fit-content;
+  }
 
-label {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-}
+  label {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+  }
 
-button {
-    /* margin-top: 50px; */
-    margin-left: 370px;
-    margin-right: 370px;
-}
+  button {
+      /* margin-top: 50px; */
+      margin-left: 370px;
+      margin-right: 370px;
+  }
 
-.modal-bars {
-    padding-right: 50px;
-    padding-left: 50px;
-    box-shadow: 3px 3px 3px grey;
-    display: flex;
-    justify-content: center;
-}
+  .modal-bars {
+      padding-right: 50px;
+      padding-left: 50px;
+      box-shadow: 3px 3px 3px grey;
+      display: flex;
+      justify-content: center;
+  }
 
-.modal-buttons {
-    padding-right: 50px;
-    padding-left: 50px;
-    color: grey;
-    background-color: white;
-    box-shadow: 3px 3px 3px grey;
-    cursor: pointer;
-}
+  .modal-buttons {
+      padding-right: 50px;
+      padding-left: 50px;
+      color: grey;
+      background-color: white;
+      box-shadow: 3px 3px 3px grey;
+      cursor: pointer;
+  }
 
-#wrong-password {
-    margin-left: 325px;
-    margin-bottom: -10px;
-    color: red;
-}
+  #wrong-password {
+      margin-left: 325px;
+      margin-bottom: -10px;
+      color: red;
+  }
 
-/* .modal-bars-valid {
-    padding-right: 50px;
-    padding-left: 50px;
-    background-color: red;
-    box-shadow: 3px 3px 3px grey;
-    cursor: pointer;
-    /* color: red */
-/* } */
+  /* .modal-bars-valid {
+      padding-right: 50px;
+      padding-left: 50px;
+      background-color: red;
+      box-shadow: 3px 3px 3px grey;
+      cursor: pointer;
+      /* color: red */
+  /* } */
