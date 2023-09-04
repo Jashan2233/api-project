@@ -60,7 +60,7 @@ const FormCreation = ({ spot }) => {
     if (!price || !Number(price)) {
       errors.price = "Price is required";
     } else if (price.length > 6) {
-      errors.price = "Price should not be more than 6 figures!";
+      errors.price = "Please offer a genuine price for your clients";
     }
 
     if (!image.trim()) {

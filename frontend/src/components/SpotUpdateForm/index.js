@@ -48,19 +48,19 @@ const SpotUpdateForm = () => {
   useEffect(() => {
     const errors = {};
     if (!country) errors.country = "Country is required";
-    if (country.length < 5 || country.length > 50)
+    if (country.length < 5 || country.length > 25)
       errors.country = "Please enter a valid country";
 
     if (!address) errors.address = "Address is required";
-    if (address.length < 10 || address.length > 250)
+    if (address.length < 10 || address.length > 30)
       errors.address = "Please enter a valid address";
 
     if (!city) errors.city = "City is required";
-    if (city.length < 5 || city.length > 50)
+    if (city.length < 5 || city.length > 25)
       errors.city = "Please enter a valid city";
 
     if (!state) errors.state = "State is required";
-    if (state.length < 5 || state.length > 50)
+    if (state.length < 5 || state.length > 25)
       errors.state = "Please enter a valid state";
 
     if (!description) errors.description = "Description is required";
@@ -68,12 +68,14 @@ const SpotUpdateForm = () => {
       errors.description = "Description needs a minimum of 30 characters";
 
     if (!name) errors.name = "Name is required";
-    if (name.length < 5 || name.length > 50)
+    if (name.length < 5 || name.length > 30)
       errors.name = "Please enter a valid name";
 
-    if (!price) errors.price = "Price is required";
-
-    // if (!image) errors.image = "Preview image is required"
+    if (!price || !Number(price)) {
+      errors.price = "Price is required";
+    } else if (price.length > 6) {
+      errors.price = "Please offer a genuine price for your clients";
+    }
 
     setValidationErrors(errors);
   }, [country, address, city, state, description, name, price]);
