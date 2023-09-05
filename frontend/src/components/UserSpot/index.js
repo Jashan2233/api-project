@@ -25,7 +25,6 @@ const UserSpot = () => {
   //If there is no User
   if (!user) {
     history.push("/");
-    console.log("Please log in!");
   }
 
   const renderCreateSpotButton = userSpots.length === 0;

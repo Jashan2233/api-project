@@ -5,7 +5,6 @@ import { deleteSpotThunk } from "../../store/spot";
 import "./DeleteModal.css";
 
 const DeleteModal = ({ spotId }) => {
-  console.log(spotId);
   const dispatch = useDispatch();
   const history = useHistory();
   const { closeModal } = useModal();

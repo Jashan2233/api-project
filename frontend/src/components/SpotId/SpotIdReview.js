@@ -8,16 +8,12 @@ import "./SpotIdReview.css";
 import DeleteReviewModal from "./DeleteReviewModal";
 
 const SpotIdReview = ({ spotId }) => {
-  console.log(spotId);
   const review = useSelector((state) => state.reviews);
   const reviewArr = Object.values(review.spot);
-  // console.log("this is the review", reviewArr)
 
   const user = useSelector((state) => state.session.user);
-  // console.log("testing", user.id)
 
   const spot = useSelector((state) => state.spots.singleSpot);
-  // console.log("this is the spot owner", spot.Owner.id)
 
   const dispatch = useDispatch();
 

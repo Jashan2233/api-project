@@ -98,8 +98,6 @@ const SpotUpdateForm = () => {
         lng,
       };
 
-      // console.log(payload)
-
       const updatedSpot = await dispatch(updateSpotThunk(payload, spotId));
 
       history.push(`/spots/${updatedSpot.id}`);
