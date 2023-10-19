@@ -29,16 +29,6 @@ module.exports = {
           url: "https://i.imgur.com/uOEj82R.jpg",
           preview: true,
         },
-        {
-          spotId: 6,
-          url: "https://i.imgur.com/drqU2Ls.jpg",
-          preview: true,
-        },
-        {
-          spotId: 9,
-          url: "https://www.ancient-origins.net/sites/default/files/field/image/Mount-Olympus.jpg",
-          preview: true,
-        },
       ],
       options
     );
