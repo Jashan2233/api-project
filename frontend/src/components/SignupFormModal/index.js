@@ -136,7 +136,7 @@ function SignupFormModal() {
           id="sign-up-btn"
           type="submit"
           style={loginStyle}
-          disable={
+          disabled={
             (!email &&
               !username &&
               !firstName &&
